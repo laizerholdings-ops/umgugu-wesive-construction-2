@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UMGUGU WESIZWE CONSTRUCTION (PTY) LTD - Your Trusted Partner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script>
+        // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+    </script>
+    <style>
+        /* Define custom colors based on the new logo */
+        :root {
+            --color-primary: #D96740; /* Orange-Red / Terracotta */
+            --color-primary-hover: #BF5733;
+            --color-dark-text: #212121;
+        }
+
+        /* Update Tailwind configuration for new colors */
+        .bg-accent { background-color: var(--color-primary); }
+        .hover\:bg-accent-hover:hover { background-color: var(--color-primary-hover); }
+        .text-accent { color: var(--color-primary); }
+        .border-accent { border-color: var(--color-primary); }
+        .focus\:ring-accent:focus { box-shadow: 0 0 0 2px var(--color-primary); border-color: var(--color-primary); }
+        .dark .bg-accent { background-color: var(--color-primary); }
+        .dark .hover\:bg-accent-hover:hover { background-color: var(--color-primary-hover); }
+        .dark .text-accent { color: var(--color-primary); }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* --- PRELOADER --- */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #111827;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.75s ease, visibility 0.75s ease;
+        }
+        #preloader.loaded {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .spinner {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            border: 8px solid #4B5563;
+            border-top-color: var(--color-primary); /* New Color */
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* --- BACKGROUND VIDEO CSS (Restored) */
+        #background-video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -100; /* Video layer */
+            filter: brightness(0.6);
+            object-fit: cover;
+        }
+        
+        /* Fixed Particle Canvas (REMOVED) */
+        #fixed-particle-canvas {
+            display: none; /* Hide the element */
+        }
+        
+        /* Dark overlay for readability over hero content */
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 0;
+        }
+        #hero > div {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Section Overlays */
+        #services, #testimonials, #faq, #why-us, #our-process, #stats { background-color: rgba(255, 255, 255, 0.97); }
+        #about, #projects { background-color: rgba(243, 244, 246, 0.97); }
+        #contact { background-color: rgba(33, 33, 33, 0.97); } /* Darker for new theme */
+
+        /* Dark Mode Overrides */
+        .dark #services, .dark #testimonials, .dark #faq, .dark #why-us, .dark #our-process, .dark #stats { background-color: rgba(33, 33, 33, 0.95); }
+        .dark #about, .dark #projects { background-color: rgba(17, 24, 39, 0.95); }
+        .dark #contact { background-color: rgba(17, 24, 39, 0.95); }
+        .dark #header.scrolled { background-color: #111827; }
+        .dark #header.scrolled #nav-links a { color: #d1d5db; }
+        .dark #header.scrolled #mobile-menu-button { color: #f9fafb; }
+        .dark #mobile-menu { background-color: #1f2937; }
+        .dark #mobile-menu a { color: #d1d5db; }
+        .dark #mobile-menu a:hover { background-color: #374151; }
+        .dark #services-page { background-color: #111827; }
+
+
+        .form-input { transition: all 0.3s ease-in-out; }
+        .form-input:focus {
+            box-shadow: 0 0 0 2px var(--color-primary); /* New Color */
+            border-color: var(--color-primary); /* New Color */
+        }
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        #header.scrolled {
+            background-color: white;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        #nav-links a {
+            color: white;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+        }
+        #header.scrolled #nav-links a {
+            color: #4B5563;
+            text-shadow: none;
+        }
+        #header.scrolled #nav-links a:hover { color: var(--color-primary); } /* New Color */
+        #mobile-menu-button { color: white; }
+        #header.scrolled #mobile-menu-button { color: #1F2937; }
+        .text-shadow-lg { text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8); }
+        .text-shadow-md { text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.8); }
+        .faq-question { cursor: pointer; }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+        .whatsapp-fab {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease-in-out;
+        }
+        .whatsapp-fab:hover { transform: scale(1.1); }
+
+        /* --- Animations --- */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+            50% { transform: scale(1.05); box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5); }
+        }
+        .whatsapp-fab { animation: pulse 2.5s infinite; }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hero-h1 { animation: fadeInDown 1s 0.2s ease-out forwards; opacity: 0; }
+        .hero-p { animation: fadeInUp 1s 0.6s ease-out forwards; opacity: 0; }
+        .hero-a { animation: fadeInUp 1s 1s ease-out forwards; opacity: 0; }
+
+        #nav-links a { position: relative; padding-bottom: 6px; }
+        #nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--color-primary); /* New Color */
+            transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        #nav-links a:hover::after { width: 100%; }
+        #header.scrolled #nav-links a::after { background-color: var(--color-primary-hover); } /* New Color */
+        .cta-button { transition: all 0.3s ease-in-out !important; }
+        .cta-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px -10px rgba(217, 103, 64, 0.7); /* New Color Shadow */
+        }
+        .title-underline {
+            transform: scaleX(0);
+            transition: transform 0.8s 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .scroll-reveal.visible .title-underline { transform: scaleX(1); }
+        .testimonial-card {
+            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+            border: 2px solid transparent;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.15);
+            border-color: var(--color-primary); /* New Color */
+        }
+        .project-text {
+            transform: translateY(100%);
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .group:hover .project-text { transform: translateY(0); }
+        .form-input:focus {
+            box-shadow: 0 0 0 3px rgba(217, 103, 64, 0.5); /* New Color Shadow */
+            border-color: var(--color-primary); /* New Color */
+        }
+        .header-logo { transition: transform 0.4s cubic-bezier(.17, .67, .83, .67) !important; }
+        .header-logo:hover { transform: scale(1.05) translateY(-2px); }
+
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-300">
+
+    <!-- Preloader --><div id="preloader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Background Video (Restored) --><video autoplay loop muted playsinline id="background-video">
+        <source src="background.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    
+    <!-- NEW: Single Fixed Particle Canvas placed behind the video and main content -->
+    <!-- REMOVED THE CANVAS ELEMENT AND ALL PARTICLE JS CODE -->
+    <canvas id="fixed-particle-canvas"></canvas>
+
+    <!-- Header & Navigation --><header id="header" class="sticky top-0 z-50 transition-all duration-300">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#" id="home-link-logo">
+                <!-- UPDATED: Logo size changed to h-20 (80px) and file is logo.png -->
+                <img src="logo.png" alt="UMGUGU WESIZWE CONSTRUCTION (PTY) LTD Logo" class="h-20 w-auto header-logo">
+            </a>
+            <div class="flex items-center">
+                <div id="nav-links" class="hidden md:flex items-center space-x-8">
+                    <a href="#hero" class="nav-link transition duration-300">Home</a>
+                    <a href="#services" class="nav-link transition duration-300">Our Services</a>
+                    <a href="#projects" class="nav-link transition duration-300">Our Projects</a>
+                    <a href="#contact" class="nav-link transition duration-300">Contacts</a>
+                </div>
+                <button id="theme-toggle" type="button" class="ml-6 text-white md:text-gray-500 md:dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
+                    <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                    <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.707.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 5.05A1 1 0 003.636 6.464l.707.707a1 1 0 001.414-1.414l-.707-.707zM3 11a1 1 0 100-2H2a1 1 0 100 2h1zm7 7a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zm-7.95-3.293a1 1 0 00-1.414 1.414l.707.707a1 1 0 001.414-1.414l-.707-.707z"></path></svg>
+                </button>
+                <a href="#contact" class="nav-link hidden lg:block ml-4 bg-accent text-white font-semibold px-5 py-2 rounded-lg hover:bg-accent-hover shadow-sm cta-button">Get a Quote</a>
+                <button id="mobile-menu-button" class="md:hidden text-2xl z-20 ml-4">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu --><div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800">
+            <a href="#hero" class="nav-link block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">Home</a>
+            <a href="#services" class="nav-link block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">Our Services</a>
+            <a href="#projects" class="nav-link block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">Our Projects</a>
+            <a href="#contact" class="nav-link block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">Contacts</a>
+            <a href="#contact" class="nav-link block text-center bg-accent text-white font-semibold mx-4 my-4 px-5 py-2 rounded-lg hover:bg-accent-hover transition duration-300">Get a Quote</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Main Content Wrapper (Home Page) --><div id="main-content">
+            <!-- Hero Section --><section id="hero" class="h-screen flex items-center justify-center text-white overflow-hidden">
+                <div class="container mx-auto px-6 text-center">
+                    <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4 text-shadow-lg hero-h1">Quality Construction & Paving Solutions</h1>
+                    <p class="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto mb-8 text-shadow-md hero-p">Building durable foundations for residential and industrial properties with unmatched expertise in asphalt, tar, and paving.</p>
+                    <a href="#contact" class="bg-accent text-white font-bold py-3 px-8 rounded-lg text-lg hover:bg-accent-hover shadow-lg hero-a cta-button">Request a Free Estimate</a>
+                </div>
+            </section>
+
+            <div id="content-below-hero" class="relative">
+                <!-- Services Section --><section id="services" class="py-20 relative z-10">
+                    <div class="container mx-auto px-6">
+                        <div class="text-center mb-12 scroll-reveal">
+                            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">Our Core Services</h2>
+                            <p class="text-gray-600 dark:text-gray-400 mt-2">A comprehensive range of services for every stage of your building and infrastructure project.</p>
+                            <div class="w-24 h-1 bg-accent mx-auto mt-4 rounded title-underline"></div>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8">
+                            <!-- Service Card 1: Road Construction --><div class="bg-gray-50 dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 scroll-reveal overflow-hidden group">
+                                <img src="Road Construction.jpg" alt="Road Construction" class="w-full h-48 object-cover">
+                                <div class="p-6">
+                                    <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white group-hover:text-accent transition-colors">Road Construction</h3>
+                                    <p class="text-gray-600 dark:text-gray-400">Engineering robust and long-lasting roads for private, commercial, and industrial access that stand the test of time.</p>
+                                </div>
+                            </div>
+                            <!-- Service Card 2: Asphalt & Tar Surfacing --><div class="bg-gray-50 dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 scroll-reveal overflow-hidden group">
+                                <img src="Asphalt & Tar Surfacing.jpg" alt="Asphalt & Tar Surfacing" class="w-full h-48 object-cover">
+                                <div class="p-6">
+                                    <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white group-hover:text-accent transition-colors">Asphalt & Tar Surfacing</h3>
+                                    <p class="text-gray-600 dark:text-gray-400">Delivering high-quality, weather-resistant asphalt and tar surfacing for driveways, parking lots, and major roadways.</p>
+                                </div>
+                            </div>
+                            <!-- Service Card 3: Paving & Hardscaping --><div class="bg-gray-50 dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 scroll-reveal overflow-hidden group">
+                                <img src="Paving Solutions.jpg" alt="Paving Solutions" class="w-full h-48 object-cover">
+                                <div class="p-6">
+                                    <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white group-hover:text-accent transition-colors">Paving & Hardscaping</h3>
+                                    <p class="text-gray-600 dark:text-gray-400">Creating beautiful and functional outdoor spaces with expert paving for walkways, patios, and driveways.</p>
+                                </div>
+                            </div>
+                            <!-- Service Card 4: General Building (New) --><div class="bg-gray-50 dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 scroll-reveal overflow-hidden group">
+                                <!-- FIX: Added correct image file path -->
+                                <img src="general building.jpg" alt="General Building" class="w-full h-48 object-cover">
+                                <div class="p-6">
+                                    <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white group-hover:text-accent transition-colors">General Building</h3>
+                                    <p class="text-gray-600 dark:text-gray-400">From foundations to final finishes, we manage commercial and residential construction projects of all complexities.</p>
+                                </div>
+                            </div>
+                             <!-- Service Card 5: Plumbing & Tiling (New) -->
+                             <!-- FIX: Removed opacity-50 and black overlay to match others. --><div class="bg-gray-50 dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 scroll-reveal overflow-hidden group">
+                                <img src="Paving Solutions.jpg" alt="Plumbing and Tiling" class="w-full h-48 object-cover">
+                                <div class="p-6">
+                                    <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white group-hover:text-accent transition-colors">Plumbing & Tiling</h3>
+                                    <p class="text-gray-600 dark:text-gray-400">Expert installation and repair of plumbing systems, and high-quality tiling for kitchens, bathrooms, and flooring.</p>
+                                </div>
+                            </div>
+                            <!-- Service Card 6: Roofing & Fencing (New) -->
+                            <!-- FIX: Removed opacity-50 and black overlay to match others. --><div class="bg-gray-50 dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 scroll-reveal overflow-hidden group">
+                                <img src="Community Access Road.jpg" alt="Roofing and Fencing" class="w-full h-48 object-cover">
+                                <div class="p-6">
+                                    <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white group-hover:text-accent transition-colors">Roofing & Fencing</h3>
+                                    <p class="text-gray-600 dark:text-gray-400">Protective roofing installations and secure fencing solutions for residential and commercial security needs.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center mt-12">
+                            <a href="#services" class="nav-link bg-accent text-white font-bold py-3 px-8 rounded-lg text-lg hover:bg-accent-hover shadow-lg cta-button">Explore All Our Services</a>
+                        </div>
+                    </div>
+                </section>
+        
+                <!-- About Us Section --><section id="about" class="py-20 relative z-10">
+                    <div class="container mx-auto px-6">
+                        <div class="flex flex-col md:flex-row items-center gap-12">
+                            <div class="md:w-1/2 scroll-reveal flex justify-center">
+                                <img src="About Ndlela-Mathuthu Construction.jpg" alt="Construction workers planning on a site" class="w-full rounded-xl shadow-2xl">
+                            </div>
+                            <div class="md:w-1/2 scroll-reveal">
+                                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Your Trusted Partner in Building the Future</h2>
+                                <div class="w-24 h-1 bg-accent mb-6 rounded title-underline"></div>
+                                <!-- REMOVED ASTERISKS from integrity, hard work, and delivering excellence -->
+                                <p class="text-gray-600 dark:text-gray-400 mb-4">UMGUGU WESIZWE CONSTRUCTION (PTY) LTD is a dynamic, 100% black-owned enterprise committed to setting new standards of quality in the South African construction industry. Based in Kwa-Zulu Natal, we are founded on the core principles of integrity, hard work, and delivering excellence from project conception to completion. We view our clients as partners, building lasting relationships based on transparency, trust, and mutual respect.</p>
+                                <!-- REMOVED ASTERISKS from on schedule, within budget -->
+                                <p class="text-gray-600 dark:text-gray-400 mb-6">Our mission is to deliver superior results that stand the test of time, ensuring every project is completed on schedule, within budget, and to the highest standards of safety and quality. We don’t just build structures; we transform your vision into a tangible reality, laying the groundwork for a stronger, more prosperous future for our communities and clients.</p>
+                                <a href="#projects" class="bg-gray-800 text-white font-semibold px-6 py-3 rounded-lg hover:bg-gray-900 dark:bg-accent dark:hover:bg-accent-hover transition duration-300 cta-button">See Our Proven Work</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Animated Stats Section --><section id="stats" class="py-20 relative z-10 bg-gray-800 text-white dark:bg-black">
+                    <div class="container mx-auto px-6">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                            <div class="scroll-reveal">
+                                <i class="fas fa-hard-hat text-accent text-4xl mb-3"></i>
+                                <p class="text-5xl font-extrabold" data-target="150">0</p>
+                                <p class="text-lg text-gray-300 mt-2">Projects Completed</p>
+                            </div>
+                            <div class="scroll-reveal">
+                                <i class="fas fa-users text-accent text-4xl mb-3"></i>
+                                <p class="text-5xl font-extrabold" data-target="120">0</p>
+                                <p class="text-lg text-gray-300 mt-2">Happy Clients</p>
+                            </div>
+                            <div class="scroll-reveal">
+                                <i class="fas fa-award text-accent text-4xl mb-3"></i>
+                                <p class="text-5xl font-extrabold" data-target="10">0</p>
+                                <p class="text-lg text-gray-300 mt-2">Years of Experience</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- Our Process Section --><section id="our-process" class="py-20 relative z-10">
+                    <div class="container mx-auto px-6">
+                        <div class="text-center mb-16 scroll-reveal">
+                            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">Our Four-Step Process</h2>
+                            <p class="text-gray-600 dark:text-gray-400 mt-2">A clear and collaborative path to successful project completion.</p>
+                            <div class="w-24 h-1 bg-accent mx-auto mt-4 rounded title-underline"></div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+                            <!-- Step 1 --><div class="scroll-reveal" style="transition-delay: 0.1s;">
+                                <div class="bg-gray-200 dark:bg-gray-700 text-accent dark:text-accent w-24 h-24 rounded-full mx-auto flex items-center justify-center text-4xl font-bold border-4 border-white dark:border-gray-800 shadow-lg">1</div>
+                                <h3 class="text-xl font-bold mt-4 mb-2 dark:text-white">Consultation & Quote</h3>
+                                <p class="text-gray-600 dark:text-gray-400">We start by understanding your vision, needs, and budget to provide a detailed, transparent, no-obligation quote.</p>
+                            </div>
+                            <!-- Step 2 --><div class="scroll-reveal" style="transition-delay: 0.2s;">
+                                <div class="bg-gray-200 dark:bg-gray-700 text-accent dark:text-accent w-24 h-24 rounded-full mx-auto flex items-center justify-center text-4xl font-bold border-4 border-white dark:border-gray-800 shadow-lg">2</div>
+                                <h3 class="text-xl font-bold mt-4 mb-2 dark:text-white">Planning & Design</h3>
+                                <p class="text-gray-600 dark:text-gray-400">Our experts create a comprehensive project plan, securing necessary permits and finalizing material selections.</p>
+                            </div>
+                            <!-- Step 3 --><div class="scroll-reveal" style="transition-delay: 0.3s;">
+                                <div class="bg-gray-200 dark:bg-gray-700 text-accent dark:text-accent w-24 h-24 rounded-full mx-auto flex items-center justify-center text-4xl font-bold border-4 border-white dark:border-gray-800 shadow-lg">3</div>
+                                <h3 class="text-xl font-bold mt-4 mb-2 dark:text-white">Construction & Execution</h3>
+                                <p class="text-gray-600 dark:text-gray-400">Our skilled team brings the plan to life, focusing on quality, safety, and efficient project management.</p>
+                            </div>
+                            <!-- Step 4 --><div class="scroll-reveal" style="transition-delay: 0.4s;">
+                                <div class="bg-gray-200 dark:bg-gray-700 text-accent dark:text-accent w-24 h-24 rounded-full mx-auto flex items-center justify-center text-4xl font-bold border-4 border-white dark:border-gray-800 shadow-lg">4</div>
+                                <h3 class="text-xl font-bold mt-4 mb-2 dark:text-white">Handover & Support</h3>
+                                <p class="text-gray-600 dark:text-gray-400">We conduct a final walkthrough to ensure your complete satisfaction and provide post-project support.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Why Choose Us Section --><section id="why-us" class="py-20 relative z-10 bg-gray-50 dark:bg-gray-900">
+                    <div class="container mx-auto px-6">
+                        <div class="text-center mb-12 scroll-reveal">
+                            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">Our Unwavering Commitment</h2>
+                            <p class="text-gray-600 dark:text-gray-400 mt-2">The pillars of our business that guarantee your project's success.</p>
+                            <div class="w-24 h-1 bg-accent mx-auto mt-4 rounded title-underline"></div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                            <!-- Feature 1 --><div class="scroll-reveal p-4" style="transition-delay: 0.1s;">
+                                <div class="bg-gray-100 dark:bg-gray-800 text-accent dark:text-accent w-20 h-20 rounded-full mx-auto flex items-center justify-center text-3xl transform hover:scale-110 transition-transform duration-300">
+                                    <i class="fas fa-medal"></i>
+                                </div>
+                                <h3 class="text-xl font-bold mt-4 mb-2 dark:text-white">Superior Quality</h3>
+                                <p class="text-gray-600 dark:text-gray-400">We use only the highest-grade materials and employ skilled professionals to ensure every project is a benchmark of durability and excellence.</p>
+                            </div>
+                            <!-- Feature 2 --><div class="scroll-reveal p-4" style="transition-delay: 0.2s;">
+                                <div class="bg-gray-100 dark:bg-gray-800 text-accent dark:text-accent w-20 h-20 rounded-full mx-auto flex items-center justify-center text-3xl transform hover:scale-110 transition-transform duration-300">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <h3 class="text-xl font-bold mt-4 mb-2 dark:text-white">On-Time Delivery</h3>
+                                <p class="text-gray-600 dark:text-gray-400">Your time is valuable. Our project management is optimized to complete every job efficiently and within the agreed-upon timeline, without compromise.</p>
+                            </div>
+                            <!-- Feature 3 --><div class="scroll-reveal p-4" style="transition-delay: 0.3s;">
+                                <div class="bg-gray-100 dark:bg-gray-800 text-accent dark:text-accent w-20 h-20 rounded-full mx-auto flex items-center justify-center text-3xl transform hover:scale-110 transition-transform duration-300">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <h3 class="text-xl font-bold mt-4 mb-2 dark:text-white">Uncompromising Safety</h3>
+                                <p class="text-gray-600 dark:text-gray-400">We enforce strict safety standards and protocols on every site, ensuring the well-being of our team, our clients, and the community.</p>
+                            </div>
+                            <!-- Feature 4 --><div class="scroll-reveal p-4" style="transition-delay: 0.4s;">
+                                <div class="bg-gray-100 dark:bg-gray-800 text-accent dark:text-accent w-20 h-20 rounded-full mx-auto flex items-center justify-center text-3xl transform hover:scale-110 transition-transform duration-300">
+                                    <i class="fas fa-handshake"></i>
+                                </div>
+                                <h3 class="text-xl font-bold mt-4 mb-2 dark:text-white">Transparent Partnership</h3>
+                                <p class="text-gray-600 dark:text-gray-400">No hidden costs or surprises. We provide clear, detailed quotes and maintain open communication throughout the project lifecycle.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Testimonials Section --><section id="testimonials" class="py-20 relative z-10">
+                    <div class="container mx-auto px-6">
+                        <div class="text-center mb-12 scroll-reveal">
+                            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">What Our Clients Say</h2>
+                            <p class="text-gray-600 dark:text-gray-400 mt-2">Building relationships one project at a time.</p>
+                            <div class="w-24 h-1 bg-accent mx-auto mt-4 rounded title-underline"></div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            <!-- Testimonial 1 --><div class="bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-md scroll-reveal testimonial-card">
+                                <div class="text-accent text-3xl mb-4"><i class="fas fa-quote-left"></i></div>
+                                <p class="text-gray-600 dark:text-gray-400 mb-6">"The new driveway is perfect! The team was professional, efficient, and the quality of work exceeded our expectations. Highly recommended."</p>
+                                <div class="font-bold text-gray-900 dark:text-white">- J. Smith</div>
+                                <div class="text-sm text-gray-500 dark:text-gray-400">Residential Paving Client</div>
+                            </div>
+                            <!-- Testimonial 2 --><div class="bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-md scroll-reveal testimonial-card">
+                                <div class="text-accent text-3xl mb-4"><i class="fas fa-quote-left"></i></div>
+                                <p class="text-gray-600 dark:text-gray-400 mb-6">"UMGUGU WESIZWE CONSTRUCTION handled the asphalt surfacing for our entire commercial lot. The project was completed ahead of schedule and the finish is flawless."</p>
+                                <div class="font-bold text-gray-900 dark:text-white">- A. Williams</div>
+                                <div class="text-sm text-gray-500 dark:text-gray-400">Industrial Client</div>
+                            </div>
+                            <!-- Testimonial 3 --><div class="bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-md scroll-reveal testimonial-card">
+                                <div class="text-accent text-3xl mb-4"><i class="fas fa-quote-left"></i></div>
+                                <p class="text-gray-600 dark:text-gray-400 mb-6">"Exceptional service from start to finish. They gave us a clear quote and stuck to it. We're so happy with our new access road."</p>
+                                <div class="font-bold text-gray-900 dark:text-white">- D. Brown</div>
+                                <div class="text-sm text-gray-500 dark:text-gray-400">Commercial Development</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Projects Gallery Section --><section id="projects" class="py-20 relative z-10">
+                    <div class="container mx-auto px-6">
+                        <div class="text-center mb-12 scroll-reveal">
+                            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">Our Recent Projects</h2>
+                            <p class="text-gray-600 dark:text-gray-400 mt-2">A portfolio of our quality craftsmanship and dedication.</p>
+                            <div class="w-24 h-1 bg-accent mx-auto mt-4 rounded title-underline"></div>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div class="group relative overflow-hidden rounded-xl shadow-lg scroll-reveal">
+                                <img src="Industrial Parking Lot.jpg" alt="Project 1" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-70 transition-all duration-500 flex items-end p-6">
+                                    <div class="text-white project-text">
+                                        <h3 class="text-xl font-bold">Industrial Parking Lot</h3>
+                                        <p class="text-sm text-gray-200">Complete asphalt surfacing for a large industrial complex.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="group relative overflow-hidden rounded-xl shadow-lg scroll-reveal">
+                                <img src="Residential Driveway.jpg" alt="Project 2" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-70 transition-all duration-500 flex items-end p-6">
+                                    <div class="text-white project-text">
+                                        <h3 class="text-xl font-bold">Residential Driveway</h3>
+                                        <p class="text-sm text-gray-200">Custom brick paving for a modern suburban home.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="group relative overflow-hidden rounded-xl shadow-lg scroll-reveal">
+                                <img src="Community Access Road.jpg" alt="Project 3" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-70 transition-all duration-500 flex items-end p-6">
+                                    <div class="text-white project-text">
+                                        <h3 class="text-xl font-bold">Community Access Road</h3>
+                                        <p class="text-sm text-gray-200">New road construction to connect a developing community.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- FAQ Section --><section id="faq" class="py-20 relative z-10">
+                    <div class="container mx-auto px-6">
+                        <div class="text-center mb-12 scroll-reveal">
+                            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">Frequently Asked Questions</h2>
+                            <p class="text-gray-600 dark:text-gray-400 mt-2">Have questions? We have answers.</p>
+                            <div class="w-24 h-1 bg-accent mx-auto mt-4 rounded title-underline"></div>
+                        </div>
+                        <div class="max-w-3xl mx-auto space-y-4">
+                            <!-- FAQ Item 1 --><div class="bg-gray-50 dark:bg-gray-800 rounded-xl shadow-sm scroll-reveal overflow-hidden">
+                                <div class="faq-question flex justify-between items-center p-6 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300">
+                                    <h3 class="font-semibold text-lg text-gray-800 dark:text-white">What areas do you service?</h3>
+                                    <i class="fas fa-plus text-accent transform transition-transform duration-300"></i>
+                                </div>
+                                <div class="faq-answer">
+                                    <!-- REMOVED ASTERISKS -->
+                                    <p class="px-6 pb-6 pt-2 text-gray-600 dark:text-gray-400 border-t border-gray-200 dark:border-gray-700">We are based in Verulam, Kwa-Zulu Natal, and service the surrounding regions. For large-scale projects, we may consider locations further afield. Please contact us to discuss your project's specific location.</p>
+                                </div>
+                            </div>
+                            <!-- FAQ Item 2 --><div class="bg-gray-50 dark:bg-gray-800 rounded-xl shadow-sm scroll-reveal overflow-hidden">
+                                <div class="faq-question flex justify-between items-center p-6 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300">
+                                    <h3 class="font-semibold text-lg text-gray-800 dark:text-white">How do I get a quote for my project?</h3>
+                                    <i class="fas fa-plus text-accent transform transition-transform duration-300"></i>
+                                </div>
+                                <div class="faq-answer">
+                                    <p class="px-6 pb-6 pt-2 text-gray-600 dark:text-gray-400 border-t border-gray-200 dark:border-gray-700">You can request a free, no-obligation quote by filling out the contact form on our website, calling us directly, or sending us a message on WhatsApp. We'll schedule a site visit if necessary to provide an accurate estimate.</p>
+                                </div>
+                            </div>
+                            <!-- FAQ Item 3 --><div class="bg-gray-50 dark:bg-gray-800 rounded-xl shadow-sm scroll-reveal overflow-hidden">
+                                <div class="faq-question flex justify-between items-center p-6 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300">
+                                    <h3 class="font-semibold text-lg text-gray-800 dark:text-white">What is the typical duration of a paving project?</h3>
+                                    <i class="fas fa-plus text-accent transform transition-transform duration-300"></i>
+                                </div>
+                                <div class="faq-answer">
+                                    <p class="px-6 pb-6 pt-2 text-gray-600 dark:text-gray-400 border-t border-gray-200 dark:border-gray-700">The duration depends on the size and complexity of the project. A standard residential driveway can take a few days, while a large industrial parking lot may take a week or more. We provide a detailed project timeline with every quote.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Contact Section --><section id="contact" class="py-20 relative z-10">
+                    <div class="container mx-auto px-6">
+                        <div class="text-center mb-12 scroll-reveal">
+                            <h2 class="text-3xl md:text-4xl font-bold text-white">Get a Free, No-Obligation Quote</h2>
+                            <p class="text-gray-300 mt-2">Let's discuss your project. Fill out the form below or give us a call.</p>
+                            <div class="w-24 h-1 bg-accent mx-auto mt-4 rounded title-underline"></div>
+                        </div>
+                        <div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-10 bg-white dark:bg-gray-800 text-gray-800 dark:text-white p-8 rounded-xl shadow-2xl scroll-reveal">
+                            <div class="md:w-1/2">
+                                <h3 class="text-2xl font-bold mb-4">Contact Information</h3>
+                                <p class="mb-4 text-gray-600 dark:text-gray-400">We're ready to help you with your next project. Reach out to us anytime!</p>
+                                <div class="space-y-4">
+                                    <p class="flex items-center"><i class="fas fa-phone text-accent w-6"></i> <span>+27 67 718 9487</span></p>
+                                    <p class="flex items-center"><i class="fas fa-envelope text-accent w-6"></i> <span>Mhlolimhloli6@gmail.com</span></p>
+                                    <p class="flex items-center"><i class="fas fa-map-marker-alt text-accent w-6"></i> <span>127, Himalaya Drive, Verulam, Kwa-Zulu Natal, 4399</span></p>
+                                </div>
+                            </div>
+                            <!-- FORM UPDATED WITH NEW FORMSPREE LINK -->
+                            <form id="contact-form" class="space-y-4 md:w-1/2" action="https://formspree.io/f/xvgvoojk" method="POST">
+                                <div>
+                                    <label for="name" class="sr-only">Name</label>
+                                    <input type="text" id="name" name="name" placeholder="Your Name" class="w-full p-3 rounded-lg border border-gray-300 bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white form-input" required>
+                                </div>
+                                <div>
+                                    <label for="email" class="sr-only">Email</label>
+                                    <input type="email" id="email" name="email" placeholder="Your Email" class="w-full p-3 rounded-lg border border-gray-300 bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white form-input" required>
+                                </div>
+                                <div>
+                                    <label for="service" class="sr-only">Service</label>
+                                    <select id="service" name="service" class="w-full p-3 rounded-lg border border-gray-300 bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white form-input" required>
+                                        <option value="" disabled selected>Select a Service</option>
+                                        <option>Road Construction</option>
+                                        <option>Asphalt & Tar</option>
+                                        <option>Paving</option>
+                                        <option>General Building</option>
+                                        <option>Plumbing & Tiling</option>
+                                        <option>Roofing & Fencing</option>
+                                        <option>Maintenance</option>
+                                        <option>Other</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="message" class="sr-only">Message</label>
+                                    <textarea id="message" name="message" placeholder="Tell us about your project..." rows="4" class="w-full p-3 rounded-lg border border-gray-300 bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white form-input" required></textarea>
+                                </div>
+                                <button type="submit" class="w-full bg-accent text-white font-bold p-3 rounded-lg hover:bg-accent-hover shadow-md cta-button">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Services Page Content (Full Service Details) --><div id="services-page" class="hidden bg-white pt-24 relative dark:bg-gray-900">
+             <!-- Particle Animation Canvas REMOVED FROM HERE --><section class="py-20 relative z-10">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-16">
+                        <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white">Our Comprehensive Services</h1>
+                        <p class="text-gray-600 dark:text-gray-400 mt-4 max-w-3xl mx-auto">At UMGUGU WESIZWE CONSTRUCTION (PTY) LTD, we believe that a strong foundation is the key to any successful project. This philosophy applies not only to the structures we build but also to the relationships we foster with our clients. We offer a fully integrated suite of services designed to take your project from initial concept to final completion with professionalism, expertise, and a commitment to your vision.</p>
+                        <div class="w-24 h-1 bg-accent mx-auto mt-6 rounded"></div>
+                    </div>
+
+                    <div class="space-y-20">
+                        <!-- Service Detail 1: Road Construction --><div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+                            <div class="md:w-1/2">
+                                <img src="Road Construction.jpg" alt="A newly constructed road" class="w-full h-auto object-cover rounded-lg shadow-xl transform hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="md:w-1/2 dark:text-gray-300">
+                                 <div class="flex items-center gap-4 mb-3">
+                                    <i class="fas fa-road text-accent text-3xl"></i>
+                                    <h3 class="text-3xl font-bold dark:text-white">Road Construction</h3>
+                                </div>
+                                <!-- Removed ** from durable, safe, and reliable road networks -->
+                                <p class="text-gray-600 dark:text-gray-400 mb-4">We provide end-to-end road construction services, handling everything from initial surveying and excavation to base preparation and final surfacing. Our focus is on creating durable, safe, and reliable road networks that serve communities and businesses for decades.</p>
+                                <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                                    <li>Site clearing, earthworks, and grading.</li>
+                                    <li>Stormwater drainage and culvert installation.</li>
+                                    <li>Sub-base and base course construction.</li>
+                                    <li>Final surfacing with asphalt, tar, or paving.</li>
+                                </ul>
+                            </div>
+                        </div>
+                         <!-- Service Detail 2: Asphalt & Tar Surfacing --><div class="flex flex-col md:flex-row-reverse items-center gap-8 md:gap-12">
+                            <div class="md:w-1/2">
+                                <img src="Asphalt & Tar Surfacing.jpg" alt="Close-up of fresh asphalt" class="w-full h-auto object-cover rounded-lg shadow-xl transform hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="md:w-1/2 dark:text-gray-300">
+                                 <div class="flex items-center gap-4 mb-3">
+                                    <i class="fas fa-layer-group text-accent text-3xl"></i>
+                                    <h3 class="text-3xl font-bold dark:text-white">Asphalt & Tar Surfacing</h3>
+                                </div>
+                                <!-- Removed ** from smooth, long-lasting surface -->
+                                <p class="text-gray-600 dark:text-gray-400 mb-4">Our expert asphalt and tar surfacing services provide a sleek, professional finish for any area. We use premium-grade materials and state-of-the-art equipment to ensure a smooth, long-lasting surface that resists weathering and heavy use, enhancing both the safety and aesthetic value of your property.</p>
+                                <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                                    <li>New installations for parking lots and driveways.</li>
+                                    <li>Resurfacing and overlays for existing pavements.</li>
+                                    <li>Pothole repairs and crack sealing.</li>
+                                    <li>Line marking and traffic control signage.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Service Detail 3: Paving & Hardscaping --><div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+                            <div class="md:w-1/2">
+                                <img src="Paving Solutions.jpg" alt="Intricate brick paving pattern" class="w-full h-auto object-cover rounded-lg shadow-xl transform hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="md:w-1/2 dark:text-gray-300">
+                                <div class="flex items-center gap-4 mb-3">
+                                    <i class="fas fa-ruler-combined text-accent text-3xl"></i>
+                                    <h3 class="text-3xl font-bold dark:text-white">Paving & Hardscaping</h3>
+                                </div>
+                                <!-- Removed ** from walkways, patios, pool surrounds, and driveways -->
+                                <p class="text-gray-600 dark:text-gray-400 mb-4">Transform your outdoor areas into beautiful and functional spaces. We offer a wide variety of materials, including brick, concrete pavers, and natural stone, to create stunning designs for walkways, patios, pool surrounds, and driveways that perfectly complement your property's aesthetic.</p>
+                                 <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                                    <li>Custom design and pattern creation.</li>
+                                    <li>Walkways, patios, and entertainment areas.</li>
+                                    <li>Durable and decorative driveway paving.</li>
+                                    <li>Retaining walls and garden edging.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Service Detail 4: General Building --><div class="flex flex-col md:flex-row-reverse items-center gap-8 md:gap-12">
+                            <div class="md:w-1/2">
+                                <!-- FIX: Added correct image file path -->
+                               <img src="general building.jpg" alt="A commercial building under construction" class="w-full h-auto object-cover rounded-lg shadow-xl transform hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="md:w-1/2 dark:text-gray-300">
+                                <div class="flex items-center gap-4 mb-3">
+                                    <i class="fas fa-trowel-bricks text-accent text-3xl"></i>
+                                    <h3 class="text-3xl font-bold dark:text-white">General Building</h3>
+                                </div>
+                                <!-- Removed ** from quality, safety, and strict adherence to architectural plans -->
+                                <p class="text-gray-600 dark:text-gray-400 mb-4">Our general building services cover a wide spectrum of construction needs, from residential homes to commercial structures. We manage projects of all sizes with an unwavering commitment to quality, safety, and strict adherence to architectural plans and national building codes.</p>
+                                <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                                    <li>Foundation and structural concrete work.</li>
+                                    <li>Bricklaying, plastering, and finishing.</li>
+                                    <li>Building additions and renovations.</li>
+                                    <li>Turnkey project management from start to finish.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Service Detail 5: Plumbing & Tiling (New) --><div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+                            <div class="md:w-1/2">
+                                <img src="Paving Solutions.jpg" alt="Plumbing pipes and tiles" class="w-full h-auto object-cover rounded-lg shadow-xl transform hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="md:w-1/2 dark:text-gray-300">
+                                 <div class="flex items-center gap-4 mb-3">
+                                    <i class="fas fa-faucet text-accent text-3xl"></i>
+                                    <h3 class="text-3xl font-bold dark:text-white">Plumbing & Tiling</h3>
+                                </div>
+                                <p class="text-gray-600 dark:text-gray-400 mb-4">Specialized interior finishing services to ensure your spaces are both functional and visually appealing. Our certified plumbers and tilers deliver quality results every time.</p>
+                                <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                                    <li>Complete pipe and fitting installation and repair.</li>
+                                    <li>Bathroom and kitchen remodels.</li>
+                                    <li>Floor and wall tiling, including complex patterns.</li>
+                                    <li>Leak detection and drainage solutions.</li>
+                                </ul>
+                            </div>
+                        </div>
+                         <!-- Service Detail 6: Roofing & Fencing (New) --><div class="flex flex-col md:flex-row-reverse items-center gap-8 md:gap-12">
+                            <div class="md:w-1/2">
+                                <img src="Community Access Road.jpg" alt="Roof structure and security fence" class="w-full h-auto object-cover rounded-lg shadow-xl transform hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="md:w-1/2 dark:text-gray-300">
+                                 <div class="flex items-center gap-4 mb-3">
+                                    <i class="fas fa-house-damage text-accent text-3xl"></i>
+                                    <h3 class="text-3xl font-bold dark:text-white">Roofing & Fencing</h3>
+                                </div>
+                                <p class="text-gray-600 dark:text-gray-400 mb-4">Protect your investment with top-tier roofing and secure the perimeter with custom-designed fencing. We provide durable solutions that offer safety and enhance curb appeal.</p>
+                                <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                                    <li>New roof installations (metal, tile, shingle).</li>
+                                    <li>Roof repair and waterproofing.</li>
+                                    <li>Installation of security, palisade, and boundary fences.</li>
+                                    <li>Gate installation and automation.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Service Detail 7: Maintenance (New) --><div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+                            <div class="md:w-1/2">
+                                <img src="Road Construction.jpg" alt="Maintenance crew working" class="w-full h-auto object-cover rounded-lg shadow-xl transform hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="md:w-1/2 dark:text-gray-300">
+                                 <div class="flex items-center gap-4 mb-3">
+                                    <i class="fas fa-wrench text-accent text-3xl"></i>
+                                    <h3 class="text-3xl font-bold dark:text-white">Property Maintenance</h3>
+                                </div>
+                                <p class="text-gray-600 dark:text-gray-400 mb-4">Comprehensive maintenance packages designed to keep your commercial or residential property in optimal condition, preventing costly future repairs.</p>
+                                <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+                                    <li>General repairs and preventative maintenance contracts.</li>
+                                    <li>HVAC and electrical system checks (minor).</li>
+                                    <li>Exterior façade cleaning and painting.</li>
+                                    <li>Emergency repair services.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-20">
+                        <a href="#" id="back-to-home" class="bg-gray-800 text-white font-semibold px-8 py-3 rounded-lg hover:bg-gray-900 dark:bg-accent dark:hover:bg-accent-hover transition duration-300 cta-button">
+                            <i class="fas fa-arrow-left mr-2"></i> Back to Home
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <!-- Success Message Modal --><div id="success-message" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden p-4 z-50">
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-xl text-center max-w-sm w-full">
+                <div class="text-5xl text-green-500 mb-4"><i class="fas fa-check-circle"></i></div>
+                <h2 class="text-2xl font-bold mb-2 dark:text-white">Message Sent!</h2>
+                <p class="text-gray-600 dark:text-gray-400 mb-6">Thank yourself for reaching out. We'll get back to you shortly.</p>
+                <button id="close-modal" class="bg-accent text-white font-bold py-2 px-6 rounded-lg hover:bg-accent-hover">Close</button>
+            </div>
+        </div>
+
+    </main>
+    
+    <!-- WhatsApp Floating Action Button --><a href="https://wa.me/27677189487" target="_blank" class="whatsapp-fab" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer --><footer class="bg-gray-900 text-gray-400 py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; <span id="year"></span> UMGUGU WESIZWE CONSTRUCTION (PTY) LTD. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Theme Toggle ---
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            themeToggleLightIcon.classList.remove('hidden');
+        } else {
+            themeToggleDarkIcon.classList.remove('hidden');
+        }
+
+        themeToggleBtn.addEventListener('click', function() {
+            themeToggleDarkIcon.classList.toggle('hidden');
+            themeToggleLightIcon.classList.toggle('hidden');
+
+            if (localStorage.getItem('color-theme')) {
+                if (localStorage.getItem('color-theme') === 'light') {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                }
+            } else {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'light');
+                }
+            }
+        });
+
+
+        // --- Preloader ---
+        const preloader = document.getElementById('preloader');
+        window.addEventListener('load', () => {
+            preloader.classList.add('loaded');
+        });
+
+        // --- Page Navigation ---
+        const mainContent = document.getElementById('main-content');
+        const servicesPage = document.getElementById('services-page');
+        const allNavLinks = document.querySelectorAll('.nav-link');
+        const backToHomeButton = document.getElementById('back-to-home');
+        const homeLogoLink = document.getElementById('home-link-logo');
+
+        function showPage(pageToShow) {
+            mainContent.classList.add('hidden');
+            servicesPage.classList.add('hidden');
+            
+            pageToShow.classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        allNavLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                const targetId = link.getAttribute('href');
+                if (targetId === '#services') {
+                    e.preventDefault();
+                    showPage(servicesPage);
+                } else {
+                    if (!servicesPage.classList.contains('hidden')) {
+                        e.preventDefault();
+                        showPage(mainContent);
+                        // Delay scroll slightly to ensure page transition completes
+                        setTimeout(() => {
+                            const targetElement = document.querySelector(targetId);
+                            if(targetElement) targetElement.scrollIntoView({ behavior: 'smooth' });
+                        }, 100);
+                    }
+                }
+            });
+        });
+        
+        backToHomeButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage(mainContent);
+        });
+        
+        homeLogoLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage(mainContent);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+
+        // --- Mobile Menu ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileNavLinks = document.querySelectorAll('#mobile-menu a');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+
+        // --- Footer Year ---
+        document.getElementById('year').textContent = new Date().getFullYear();
+        
+        // --- Contact Form ---
+        const contactForm = document.getElementById('contact-form');
+        const successMessage = document.getElementById('success-message');
+        const closeModalButton = document.getElementById('close-modal');
+
+        // NOTE: We rely on Formspree redirecting the user to a success page upon submission, 
+        // so we don't prevent default submission here. We only use the below code for testing/local
+        /*
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            // In a real application, you would handle the Formspree submission response here.
+            // For this demonstration, we'll just show the modal after a delay.
+            setTimeout(() => {
+                successMessage.classList.remove('hidden');
+                // The form is handled by Formspree's action attribute, so manual submission isn't needed here.
+            }, 500);
+        });
+        */
+       
+        closeModalButton.addEventListener('click', () => {
+            successMessage.classList.add('hidden');
+            // We removed contactForm.reset() to allow the successful Formspree redirect to handle the completion state.
+        });
+        
+        // --- Scroll Animations ---
+        const scrollElements = document.querySelectorAll('.scroll-reveal');
+        const elementInView = (el, dividend = 1) => {
+            const elementTop = el.getBoundingClientRect().top;
+            return (elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend);
+        };
+        const displayScrollElement = (element) => {
+            element.classList.add('visible');
+        };
+        const handleScrollAnimation = () => {
+            scrollElements.forEach((el) => {
+                if (elementInView(el, 1.25)) {
+                    displayScrollElement(el);
+                }
+            })
+        }
+        
+        window.addEventListener('scroll', handleScrollAnimation);
+        window.addEventListener('load', handleScrollAnimation);
+
+        // --- Animated Counters ---
+        const statsSection = document.getElementById('stats');
+        const counters = statsSection ? statsSection.querySelectorAll('p[data-target]') : [];
+        let animated = false;
+
+        const animateCounters = () => {
+            if (statsSection && elementInView(statsSection, 1.2) && !animated) {
+                animated = true;
+                counters.forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    let count = 0;
+                    const increment = target / 100;
+
+                    const updateCount = () => {
+                        if (count < target) {
+                            count = Math.ceil(count + increment);
+                            counter.innerText = count;
+                            setTimeout(updateCount, 20);
+                        } else {
+                            counter.innerText = target;
+                        }
+                    };
+                    updateCount();
+                });
+            }
+        };
+
+        window.addEventListener('scroll', animateCounters);
+        window.addEventListener('load', animateCounters);
+
+
+        // --- Header Scroll Effect ---
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // --- FAQ Accordion ---
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('i');
+                const isOpening = !answer.style.maxHeight;
+
+                document.querySelectorAll('.faq-answer').forEach(ans => {
+                    ans.style.maxHeight = null;
+                    // Reset icon rotation
+                    const prevIcon = ans.previousElementSibling.querySelector('i');
+                    if (prevIcon) prevIcon.classList.remove('rotate-45');
+                });
+                
+                if (isOpening) {
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                    icon.classList.add('rotate-45');
+                }
+            });
+        });
+
+        // --- Particle Animation (REMOVED) ---
+        // All particle-related classes and functions are now removed or disabled.
+        
+
+    </script>
+
+</body>
+</html>
